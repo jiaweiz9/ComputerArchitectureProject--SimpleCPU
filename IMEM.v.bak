@@ -1,0 +1,7 @@
+module IMEM(address, instruction);
+   input [31:0] address;
+   output [31:0]instruction;
+   reg [31:0] IROM[31:0];
+
+   assign instruction = IROM[address[6:2]];
+endmodule

@@ -1,0 +1,32 @@
+`include "decode.v"
+
+module alu(A, B, shamt, ALUop, C, Zero);
+  input signed [31:0] A,B;
+  input [4:0] shamt;
+  input [2:0] ALUop;
+  output signed [31:0] C;
+  output Zero;
+  
+  reg [31:0] C;
+  integer i;
+  
+  always @(*) begin
+    case(ALUop)
+      `ALU_NOP: C = A;
+      `ALU_ADD: C = A + B;
+      `ALU_SUB: C = A - B;
+      `ALU_AND: C = A & B;
+      `ALU_OR:  C = A | B;
+      `ALU_NOR: C = ~(A + B);
+      `ALU_SLT: C = (A < B)? 32'd1 :32'd0;
+      `AlU_SLL: C = B << shamt;
+      `ALU_SRL: C = B >> shamt;
+      `ALU_SLLV:C = B << A;
+      `ALU_SRLV:C = B >> A;
+      `ALU_LUI :C = B << 16;
+    endcase
+  end
+  
+  assign Zero = (C == 32'b0);
+
+endmodule   
