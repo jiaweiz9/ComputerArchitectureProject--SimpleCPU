@@ -1,2 +1,4 @@
-# *Computer Architecture and Design* Course Project
-A simple MIPS CPU realized five-stage pipeline and bypassing
+# Description
+A simple MIPS CPU with features: 
+1. five-stage pipeline
+2. bypassing
